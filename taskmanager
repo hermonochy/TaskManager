@@ -1,5 +1,5 @@
 #!/usr/bin/env lua
-local filename = "tasks.txt"
+local filename = ".tasks.txt"
 local tasks = {}
 
 local function loadTasks()
