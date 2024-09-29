@@ -1,9 +1,9 @@
 #!/usr/bin/env lua
-local filename = ".tasks.txt"
-local tasks = {}
+ filename = ".tasks.txt"
+ tasks = {}
 
-local function loadTasks()
-    local file = io.open(filename, "r")
+ function loadTasks()
+     file = io.open(filename, "r")
     if file then
         for line in file:lines() do
             table.insert(tasks, line)
@@ -12,21 +12,21 @@ local function loadTasks()
     end
 end
 
-local function saveTasks()
-    local file = io.open(filename, "w")
+ function saveTasks()
+     file = io.open(filename, "w")
     for _, task in ipairs(tasks) do
         file:write(task .. "\n")
     end
     file:close()
 end
 
-local function addTask(task)
+ function addTask(task)
     table.insert(tasks, task)
     saveTasks()
     print("Task added: " .. task)
 end
 
-local function viewTasks()
+ function viewTasks()
     if #tasks == 0 then
         print("No tasks available.")
     else
@@ -37,7 +37,7 @@ local function viewTasks()
     end
 end
 
-local function removeTask(index)
+ function removeTask(index)
     if index >= 1 and index <= #tasks then
         print("Removing task: " .. tasks[index])
         table.remove(tasks, index)
@@ -47,7 +47,7 @@ local function removeTask(index)
     end
 end
 
-local function main()
+ function main()
     loadTasks()
     while true do
         print("\nTask Manager")
@@ -56,17 +56,17 @@ local function main()
         print("3. Remove Task")
         print("4. Exit")
         io.write("Choose an option (1-4): ")
-        local choice = tonumber(io.read())
+         choice = tonumber(io.read())
 
         if choice == 1 then
             io.write("Enter task: ")
-            local task = io.read()
+             task = io.read()
             addTask(task)
         elseif choice == 2 then
             viewTasks()
         elseif choice == 3 then
             io.write("Enter task number to remove: ")
-            local index = tonumber(io.read())
+             index = tonumber(io.read())
             removeTask(index)
         elseif choice == 4 then
             break
